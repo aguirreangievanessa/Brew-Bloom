@@ -1,0 +1,920 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedidos en línea | Brew & Bloom</title>
+
+  <style>
+    :root {
+      --rosa: #f5dce3;
+      --rosa-fuerte: #d98fa5;
+      --crema: #fff9f0;
+      --cafe: #68483b;
+      --cafe-claro: #a77b68;
+      --blanco: #ffffff;
+      --verde: #71866a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      background: var(--crema);
+      color: var(--cafe);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--rosa);
+      padding: 20px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .logo {
+      font-family: Georgia, serif;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--cafe);
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    nav a {
+      color: var(--cafe);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: #b65f7c;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 55px 20px;
+      background: linear-gradient(135deg, #f8e8e8, #fff4df);
+    }
+
+    .hero h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: auto;
+    }
+
+    .contenedor {
+      width: min(1150px, 92%);
+      margin: 40px auto;
+    }
+
+    .titulo-seccion {
+      font-family: Georgia, serif;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .subtitulo {
+      text-align: center;
+      margin-bottom: 30px;
+      color: var(--cafe-claro);
+    }
+
+    .contenido {
+      display: grid;
+      grid-template-columns: 1.7fr 1fr;
+      gap: 25px;
+      align-items: start;
+    }
+
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .producto {
+      background: var(--blanco);
+      border: 1px solid #f0d9d5;
+      border-radius: 20px;
+      padding: 22px;
+      text-align: center;
+      box-shadow: 0 5px 15px #68483b10;
+      transition: transform 0.2s;
+    }
+
+    .producto:hover {
+      transform: translateY(-4px);
+    }
+
+    .producto .emoji {
+      font-size: 3rem;
+      margin-bottom: 8px;
+    }
+
+    .producto h3 {
+      margin-bottom: 7px;
+    }
+
+    .producto p {
+      color: #8b7063;
+      font-size: 0.93rem;
+      margin-bottom: 10px;
+    }
+
+    .precio {
+      color: #b65f7c;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      cursor: pointer;
+      border-radius: 25px;
+      padding: 11px 17px;
+      font-size: 0.95rem;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .btn-principal {
+      background: var(--rosa-fuerte);
+      color: white;
+    }
+
+    .btn-principal:hover {
+      background: #c77891;
+      transform: translateY(-2px);
+    }
+
+    .btn-secundario {
+      background: #f5e8dc;
+      color: var(--cafe);
+    }
+
+    .btn-secundario:hover {
+      background: #ead4c2;
+    }
+
+    .carrito {
+      background: #fff;
+      border: 1px solid #f0d9d5;
+      border-radius: 22px;
+      padding: 25px;
+      box-shadow: 0 5px 15px #68483b10;
+      position: sticky;
+      top: 20px;
+    }
+
+    .carrito h2 {
+      font-family: Georgia, serif;
+      margin-bottom: 15px;
+    }
+
+    #lista-carrito {
+      list-style: none;
+    }
+
+    .carrito-vacio {
+      color: #9b8175;
+      padding: 15px 0;
+    }
+
+    .item-carrito {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 0;
+      border-bottom: 1px solid #f0e4dd;
+    }
+
+    .item-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .item-info strong {
+      display: block;
+    }
+
+    .item-info small {
+      color: #96786a;
+    }
+
+    .controles {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 6px;
+    }
+
+    .btn-cantidad {
+      width: 27px;
+      height: 27px;
+      padding: 0;
+      border-radius: 50%;
+      background: var(--rosa);
+      color: var(--cafe);
+    }
+
+    .btn-eliminar {
+      padding: 5px 8px;
+      color: #a24c63;
+      background: #fff0f3;
+      font-size: 0.8rem;
+    }
+
+    .resumen {
+      margin-top: 18px;
+      padding-top: 15px;
+      border-top: 2px dashed #e8c9c8;
+    }
+
+    .linea-total {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .total {
+      font-size: 1.35rem;
+      font-weight: bold;
+      color: #b65f7c;
+    }
+
+    .carrito .btn-principal,
+    .carrito .btn-secundario {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .nota {
+      color: #96786a;
+      font-size: 0.83rem;
+      margin-top: 12px;
+    }
+
+    .formulario {
+      background: #fff;
+      border: 1px solid #f0d9d5;
+      border-radius: 22px;
+      padding: 28px;
+      margin-top: 35px;
+    }
+
+    .formulario h2 {
+      font-family: Georgia, serif;
+      margin-bottom: 8px;
+    }
+
+    .formulario > p {
+      margin-bottom: 22px;
+      color: #8b7063;
+    }
+
+    .campos {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .campo {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .campo.completo {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #e6cfc8;
+      border-radius: 12px;
+      background: #fffdfb;
+      color: var(--cafe);
+      font: inherit;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: 2px solid #e8b7c5;
+      border-color: var(--rosa-fuerte);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .aviso {
+      margin-top: 18px;
+      padding: 13px;
+      background: #fff4df;
+      border-radius: 12px;
+      font-size: 0.9rem;
+    }
+
+    .resultado {
+      display: none;
+      margin-top: 22px;
+      padding: 20px;
+      background: #edf5e9;
+      border-radius: 15px;
+      border: 1px solid #cbdcc3;
+    }
+
+    .resultado h3 {
+      margin-bottom: 8px;
+      color: #476342;
+    }
+
+    footer {
+      background: var(--rosa);
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 50px;
+    }
+
+    footer p {
+      margin: 5px;
+    }
+
+    @media (max-width: 800px) {
+      header {
+        justify-content: center;
+        text-align: center;
+      }
+
+      nav {
+        justify-content: center;
+      }
+
+      .contenido {
+        grid-template-columns: 1fr;
+      }
+
+      .carrito {
+        position: static;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .campos {
+        grid-template-columns: 1fr;
+      }
+
+      .campo.completo {
+        grid-column: auto;
+      }
+
+      .formulario {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">🌷 Brew & Bloom</div>
+
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="menu.html">Menú</a>
+      <a href="especialidades.html">Especialidades</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="pedidos.html">Pedidos</a>
+      <a href="reservaciones.html">Reservaciones</a>
+      <a href="promociones.html">Promociones</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Tu cafecito favorito, a un clic ☕</h1>
+    <p>
+      Elige tus bebidas y postres favoritos, personaliza tu pedido
+      y disfruta un momento dulce con Brew & Bloom. 🌸
+    </p>
+  </section>
+
+  <main class="contenedor">
+
+    <h2 class="titulo-seccion">Haz tu pedido en línea</h2>
+    <p class="subtitulo">
+      Agrega tus favoritos al carrito y prepara tu pedido.
+    </p>
+
+    <div class="contenido">
+
+      <section>
+        <div class="productos">
+
+          <article class="producto">
+            <div class="emoji">☕</div>
+            <h3>Latte de vainilla</h3>
+            <p>Espresso, leche cremosa y un toque de vainilla.</p>
+            <div class="precio">$65 MXN</div>
+            <button class="btn-principal"
+              onclick="agregarProducto('Latte de vainilla', 65)">
+              Agregar al pedido
+            </button>
+          </article>
+
+          <article class="producto">
+            <div class="emoji">🍵</div>
+            <h3>Matcha latte</h3>
+            <p>Té matcha con leche, suave y delicioso.</p>
+            <div class="precio">$70 MXN</div>
+            <button class="btn-principal"
+              onclick="agregarProducto('Matcha latte', 70)">
+              Agregar al pedido
+            </button>
+          </article>
+
+          <article class="producto">
+            <div class="emoji">🧋</div>
+            <h3>Frappé de moka</h3>
+            <p>Bebida fría de café y chocolate.</p>
+            <div class="precio">$75 MXN</div>
+            <button class="btn-principal"
+              onclick="agregarProducto('Frappé de moka', 75)">
+              Agregar al pedido
+            </button>
+          </article>
+
+          <article class="producto">
+            <div class="emoji">🍓</div>
+            <h3>Frappé de fresa</h3>
+            <p>Una bebida fría, dulce y frutal.</p>
+            <div class="precio">$70 MXN</div>
+            <button class="btn-principal"
+              onclick="agregarProducto('Frappé de fresa', 70)">
+              Agregar al pedido
+            </button>
+          </article>
+
+          <article class="producto">
+            <div class="emoji">🥐</div>
+            <h3>Croissant</h3>
+            <p>Pan recién horneado, doradito y suave.</p>
+            <div class="precio">$45 MXN</div>
+            <button class="btn-principal"
+              onclick="agregarProducto('Croissant', 45)">
+              Agregar al pedido
+            </button>
+          </article>
+
+          <article class="producto">
+            <div class="emoji">🍰</div>
+            <h3>Pastel de fresa</h3>
+            <p>Pastel esponjoso con crema y fresas.</p>
+            <div class="precio">$60 MXN</div>
+            <button class="btn-principal"
+              onclick="agregarProducto('Pastel de fresa', 60)">
+              Agregar al pedido
+            </button>
+          </article>
+
+          <article class="producto">
+            <div class="emoji">🍪</div>
+            <h3>Galleta con chispas</h3>
+            <p>Galleta dulce con trocitos de chocolate.</p>
+            <div class="precio">$30 MXN</div>
+            <button class="btn-principal"
+              onclick="agregarProducto('Galleta con chispas', 30)">
+              Agregar al pedido
+            </button>
+          </article>
+
+          <article class="producto">
+            <div class="emoji">🍫</div>
+            <h3>Brownie</h3>
+            <p>Brownie de chocolate con textura suave.</p>
+            <div class="precio">$40 MXN</div>
+            <button class="btn-principal"
+              onclick="agregarProducto('Brownie', 40)">
+              Agregar al pedido
+            </button>
+          </article>
+
+        </div>
+      </section>
+
+      <aside class="carrito">
+        <h2>🛍️ Tu carrito</h2>
+
+        <ul id="lista-carrito">
+          <li class="carrito-vacio">
+            Tu carrito está vacío. ¡Agrega algo rico! 🌷
+          </li>
+        </ul>
+
+        <div class="resumen">
+          <div class="linea-total">
+            <span>Subtotal:</span>
+            <span id="subtotal">$0.00</span>
+          </div>
+
+          <div class="linea-total">
+            <span>Entrega:</span>
+            <span id="costo-entrega">$0.00</span>
+          </div>
+
+          <div class="linea-total total">
+            <span>Total:</span>
+            <span id="total">$0.00</span>
+          </div>
+        </div>
+
+        <button class="btn-secundario" onclick="vaciarCarrito()">
+          Vaciar carrito
+        </button>
+
+        <button class="btn-principal" onclick="irAlFormulario()">
+          Continuar con mi pedido
+        </button>
+
+        <p class="nota">
+          🌸 Los precios están expresados en pesos mexicanos.
+          El costo de entrega depende de la opción que elijas.
+        </p>
+      </aside>
+
+    </div>
+
+    <section class="formulario" id="formulario-pedido">
+      <h2>💌 Datos de tu pedido</h2>
+      <p>Completa estos datos para preparar tu pedido de demostración.</p>
+
+      <form id="form-pedido">
+        <div class="campos">
+
+          <div class="campo">
+            <label for="nombre">Nombre *</label>
+            <input type="text" id="nombre" name="nombre"
+              placeholder="Tu nombre" required>
+          </div>
+
+          <div class="campo">
+            <label for="telefono">Teléfono de contacto *</label>
+            <input type="tel" id="telefono" name="telefono"
+              placeholder="Tu número de teléfono"
+              pattern="[0-9+\s()-]{7,20}" required>
+          </div>
+
+          <div class="campo">
+            <label for="entrega">¿Cómo recibirás tu pedido? *</label>
+            <select id="entrega" name="entrega" required>
+              <option value="recoger">Recoger en cafetería — Gratis</option>
+              <option value="domicilio">Entrega a domicilio — $35 MXN</option>
+            </select>
+          </div>
+
+          <div class="campo" id="campo-direccion" style="display: none;">
+            <label for="direccion">Dirección de entrega *</label>
+            <input type="text" id="direccion" name="direccion"
+              placeholder="Calle, número y colonia">
+          </div>
+
+          <div class="campo">
+            <label for="hora">Horario preferido</label>
+            <select id="hora" name="hora">
+              <option value="Lo antes posible">Lo antes posible</option>
+              <option value="9:00 a. m. - 11:00 a. m.">9:00 a. m. - 11:00 a. m.</option>
+              <option value="11:00 a. m. - 1:00 p. m.">11:00 a. m. - 1:00 p. m.</option>
+              <option value="1:00 p. m. - 3:00 p. m.">1:00 p. m. - 3:00 p. m.</option>
+              <option value="3:00 p. m. - 5:00 p. m.">3:00 p. m. - 5:00 p. m.</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="pago">Método de pago preferido *</label>
+            <select id="pago" name="pago" required>
+              <option value="Efectivo">Efectivo</option>
+              <option value="Tarjeta al recoger">Tarjeta al recoger</option>
+              <option value="Pago al recibir">Pago al recibir</option>
+            </select>
+          </div>
+
+          <div class="campo completo">
+            <label for="notas">Notas especiales (opcional)</label>
+            <textarea id="notas" name="notas"
+              placeholder="Ej. leche deslactosada, sin crema o alguna indicación..."></textarea>
+          </div>
+
+        </div>
+
+        <div class="aviso">
+          🌷 <strong>Importante:</strong> esta página es una demostración.
+          No envía pedidos reales ni procesa pagos.
+        </div>
+
+        <button type="submit" class="btn-principal"
+          style="margin-top: 20px; width: 100%;">
+          Confirmar pedido de prueba ✨
+        </button>
+      </form>
+
+      <div class="resultado" id="resultado" aria-live="polite">
+        <h3>¡Tu pedido de prueba está listo! 🌸</h3>
+        <p id="resumen-pedido"></p>
+        <button class="btn-secundario" onclick="nuevoPedido()">
+          Crear otro pedido
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>🌷 <strong>Brew & Bloom</strong> — Un cafecito, un momento feliz.</p>
+    <p>Hecho con cariño y aroma a café ☕</p>
+    <p>© <span id="anio"></span> Brew & Bloom</p>
+  </footer>
+
+  <script>
+    const carrito = [];
+
+    const formatoPrecio = (cantidad) =>
+      cantidad.toLocaleString("es-MX", {
+        style: "currency",
+        currency: "MXN"
+      });
+
+    function agregarProducto(nombre, precio) {
+      const existente = carrito.find(item => item.nombre === nombre);
+
+      if (existente) {
+        existente.cantidad++;
+      } else {
+        carrito.push({
+          nombre: nombre,
+          precio: precio,
+          cantidad: 1
+        });
+      }
+
+      actualizarCarrito();
+    }
+
+    function cambiarCantidad(nombre, cambio) {
+      const producto = carrito.find(item => item.nombre === nombre);
+
+      if (!producto) return;
+
+      producto.cantidad += cambio;
+
+      if (producto.cantidad <= 0) {
+        const indice = carrito.indexOf(producto);
+        carrito.splice(indice, 1);
+      }
+
+      actualizarCarrito();
+    }
+
+    function eliminarProducto(nombre) {
+      const indice = carrito.findIndex(item => item.nombre === nombre);
+
+      if (indice !== -1) {
+        carrito.splice(indice, 1);
+      }
+
+      actualizarCarrito();
+    }
+
+    function vaciarCarrito() {
+      carrito.length = 0;
+      actualizarCarrito();
+    }
+
+    function obtenerSubtotal() {
+      return carrito.reduce(
+        (suma, item) => suma + item.precio * item.cantidad,
+        0
+      );
+    }
+
+    function obtenerEntrega() {
+      const tipo = document.getElementById("entrega").value;
+
+      return tipo === "domicilio" && carrito.length > 0 ? 35 : 0;
+    }
+
+    function actualizarCarrito() {
+      const lista = document.getElementById("lista-carrito");
+      lista.innerHTML = "";
+
+      if (carrito.length === 0) {
+        const mensaje = document.createElement("li");
+        mensaje.className = "carrito-vacio";
+        mensaje.textContent =
+          "Tu carrito está vacío. ¡Agrega algo rico! 🌷";
+        lista.appendChild(mensaje);
+      } else {
+        carrito.forEach(item => {
+          const li = document.createElement("li");
+          li.className = "item-carrito";
+
+          const info = document.createElement("div");
+          info.className = "item-info";
+
+          const nombre = document.createElement("strong");
+          nombre.textContent = item.nombre;
+
+          const precio = document.createElement("small");
+          precio.textContent =
+            formatoPrecio(item.precio) + " cada uno";
+
+          const controles = document.createElement("div");
+          controles.className = "controles";
+
+          const menos = document.createElement("button");
+          menos.className = "btn-cantidad";
+          menos.textContent = "−";
+          menos.setAttribute("aria-label", "Quitar una unidad de " + item.nombre);
+          menos.addEventListener("click", () =>
+            cambiarCantidad(item.nombre, -1)
+          );
+
+          const cantidad = document.createElement("span");
+          cantidad.textContent = item.cantidad;
+
+          const mas = document.createElement("button");
+          mas.className = "btn-cantidad";
+          mas.textContent = "+";
+          mas.setAttribute("aria-label", "Agregar una unidad de " + item.nombre);
+          mas.addEventListener("click", () =>
+            cambiarCantidad(item.nombre, 1)
+          );
+
+          controles.append(menos, cantidad, mas);
+          info.append(nombre, precio, controles);
+
+          const ladoDerecho = document.createElement("div");
+
+          const totalItem = document.createElement("strong");
+          totalItem.textContent =
+            formatoPrecio(item.precio * item.cantidad);
+
+          const eliminar = document.createElement("button");
+          eliminar.className = "btn-eliminar";
+          eliminar.textContent = "Quitar";
+          eliminar.addEventListener("click", () =>
+            eliminarProducto(item.nombre)
+          );
+
+          ladoDerecho.append(totalItem, eliminar);
+          li.append(info, ladoDerecho);
+          lista.appendChild(li);
+        });
+      }
+
+      const subtotal = obtenerSubtotal();
+      const entrega = obtenerEntrega();
+
+      document.getElementById("subtotal").textContent =
+        formatoPrecio(subtotal);
+
+      document.getElementById("costo-entrega").textContent =
+        formatoPrecio(entrega);
+
+      document.getElementById("total").textContent =
+        formatoPrecio(subtotal + entrega);
+    }
+
+    function actualizarCampoDireccion() {
+      const esDomicilio =
+        document.getElementById("entrega").value === "domicilio";
+
+      const campo = document.getElementById("campo-direccion");
+      const direccion = document.getElementById("direccion");
+
+      campo.style.display = esDomicilio ? "flex" : "none";
+      direccion.required = esDomicilio;
+
+      actualizarCarrito();
+    }
+
+    document.getElementById("entrega").addEventListener(
+      "change",
+      actualizarCampoDireccion
+    );
+
+    function irAlFormulario() {
+      if (carrito.length === 0) {
+        alert("🌸 Primero agrega al menos un producto a tu carrito.");
+        return;
+      }
+
+      document.getElementById("formulario-pedido").scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+
+    document.getElementById("form-pedido").addEventListener(
+      "submit",
+      function(event) {
+        event.preventDefault();
+
+        if (carrito.length === 0) {
+          alert("Agrega al menos un producto antes de confirmar tu pedido.");
+          return;
+        }
+
+        const nombre = document.getElementById("nombre").value.trim();
+        const entrega = document.getElementById("entrega").value;
+        const direccion = document.getElementById("direccion").value.trim();
+        const hora = document.getElementById("hora").value;
+        const pago = document.getElementById("pago").value;
+        const notas = document.getElementById("notas").value.trim();
+
+        if (!nombre) {
+          alert("Por favor, escribe tu nombre.");
+          return;
+        }
+
+        if (entrega === "domicilio" && !direccion) {
+          alert("Por favor, escribe la dirección de entrega.");
+          return;
+        }
+
+        const productos = carrito.map(item =>
+          `${item.cantidad} × ${item.nombre} (${formatoPrecio(item.precio * item.cantidad)})`
+        );
+
+        const total = obtenerSubtotal() + obtenerEntrega();
+
+        const resumen =
+          `Gracias, ${nombre}. 🌷\n\n` +
+          `Productos: ${productos.join(", ")}.\n` +
+          `Entrega: ${entrega === "domicilio" ? "A domicilio" : "Recoger en cafetería"}.\n` +
+          (entrega === "domicilio" ? `Dirección: ${direccion}.\n` : "") +
+          `Horario preferido: ${hora}.\n` +
+          `Pago preferido: ${pago}.\n` +
+          (notas ? `Notas: ${notas}.\n` : "") +
+          `Total de prueba: ${formatoPrecio(total)}.\n\n` +
+          `Este es un resumen de demostración. Tu pedido no se ha enviado a la cafetería.`;
+
+        document.getElementById("resumen-pedido").textContent = resumen;
+        document.getElementById("resultado").style.display = "block";
+        document.getElementById("resultado").scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }
+    );
+
+    function nuevoPedido() {
+      vaciarCarrito();
+      document.getElementById("form-pedido").reset();
+      document.getElementById("resultado").style.display = "none";
+      actualizarCampoDireccion();
+
+      document.getElementById("formulario-pedido").scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+
+    document.getElementById("anio").textContent =
+      new Date().getFullYear();
+
+    actualizarCarrito();
+  </script>
+
+</body>
+</html>

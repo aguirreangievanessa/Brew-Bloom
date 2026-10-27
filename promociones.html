@@ -1,0 +1,548 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promociones | Brew & Bloom</title>
+
+  <style>
+    :root {
+      --rosa: #f5dce3;
+      --rosa-fuerte: #d98fa5;
+      --crema: #fff9f0;
+      --cafe: #68483b;
+      --cafe-claro: #a77b68;
+      --blanco: #ffffff;
+      --rosa-palido: #fff0f3;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      background: var(--crema);
+      color: var(--cafe);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--rosa);
+      padding: 20px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .logo {
+      font-family: Georgia, serif;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    nav a {
+      color: var(--cafe);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: #b65f7c;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 70px 20px;
+      background: linear-gradient(135deg, #f8e5e8, #fff1d9);
+    }
+
+    .hero .decoracion {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .hero h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(2.2rem, 5vw, 3.3rem);
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: 0 auto 25px;
+      font-size: 1.05rem;
+    }
+
+    .boton {
+      display: inline-block;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 23px;
+      background: var(--rosa-fuerte);
+      color: white;
+      text-decoration: none;
+      font-family: inherit;
+      font-weight: bold;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .boton:hover {
+      background: #c77891;
+      transform: translateY(-2px);
+    }
+
+    .contenedor {
+      width: min(1100px, 92%);
+      margin: 50px auto;
+    }
+
+    .titulo {
+      font-family: Georgia, serif;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .subtitulo {
+      text-align: center;
+      color: var(--cafe-claro);
+      margin-bottom: 30px;
+    }
+
+    .promociones {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .tarjeta {
+      background: white;
+      border: 1px solid #f0d9d5;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px #68483b12;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .tarjeta:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px #68483b1c;
+    }
+
+    .tarjeta-superior {
+      padding: 25px 15px;
+      text-align: center;
+      background: var(--rosa-palido);
+    }
+
+    .tarjeta:nth-child(2) .tarjeta-superior {
+      background: #fff0d9;
+    }
+
+    .tarjeta:nth-child(3) .tarjeta-superior {
+      background: #e9efe3;
+    }
+
+    .tarjeta:nth-child(4) .tarjeta-superior {
+      background: #f2e8f5;
+    }
+
+    .emoji {
+      font-size: 3.5rem;
+      margin-bottom: 8px;
+    }
+
+    .etiqueta {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: white;
+      color: #b65f7c;
+      font-size: 0.8rem;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .tarjeta-superior h3 {
+      font-family: Georgia, serif;
+      font-size: 1.35rem;
+    }
+
+    .tarjeta-contenido {
+      padding: 23px;
+    }
+
+    .tarjeta-contenido p {
+      color: #8b7063;
+      margin-bottom: 15px;
+    }
+
+    .precios {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .precio-nuevo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #b65f7c;
+    }
+
+    .precio-anterior {
+      text-decoration: line-through;
+      color: #a8958a;
+    }
+
+    .tarjeta-contenido .boton {
+      width: 100%;
+      text-align: center;
+    }
+
+    .cupon {
+      margin-top: 55px;
+      padding: 40px 25px;
+      border-radius: 25px;
+      text-align: center;
+      background: linear-gradient(135deg, #f5dce3, #fff0d9);
+    }
+
+    .cupon h2 {
+      font-family: Georgia, serif;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .cupon p {
+      margin-bottom: 20px;
+    }
+
+    .codigo {
+      display: inline-block;
+      padding: 12px 25px;
+      margin-bottom: 18px;
+      border: 2px dashed #b65f7c;
+      border-radius: 12px;
+      background: #fffaf6;
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 3px;
+    }
+
+    .mensaje-cupon {
+      min-height: 25px;
+      margin-top: 12px;
+      color: #476342;
+      font-weight: bold;
+    }
+
+    .nota-cupon {
+      font-size: 0.85rem;
+      color: #8b7063;
+      margin-top: 10px;
+    }
+
+    .beneficios {
+      margin-top: 55px;
+    }
+
+    .beneficios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 25px;
+    }
+
+    .beneficio {
+      padding: 25px;
+      background: white;
+      border-radius: 18px;
+      text-align: center;
+      border: 1px solid #f0d9d5;
+    }
+
+    .beneficio span {
+      font-size: 2.3rem;
+    }
+
+    .beneficio h3 {
+      margin: 10px 0;
+    }
+
+    .beneficio p {
+      color: #8b7063;
+      font-size: 0.93rem;
+    }
+
+    .aviso {
+      background: #fff4df;
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 35px;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    footer {
+      background: var(--rosa);
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 50px;
+    }
+
+    footer p {
+      margin: 5px;
+    }
+
+    @media (max-width: 800px) {
+      header {
+        justify-content: center;
+        text-align: center;
+      }
+
+      nav {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">🌷 Brew & Bloom</div>
+
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="menu.html">Menú</a>
+      <a href="especialidades.html">Especialidades</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="pedidos.html">Pedidos</a>
+      <a href="reservaciones.html">Reservaciones</a>
+      <a href="promociones.html">Promociones</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="decoracion">🎀 ☕ 🌸</div>
+    <h1>Pequeños antojos, grandes sonrisas</h1>
+    <p>
+      Descubre nuestros combos y ofertas especiales.
+      En Brew & Bloom siempre hay una razón para disfrutar
+      tu café favorito con algo dulce.
+    </p>
+    <a href="#ofertas" class="boton">Ver promociones ♡</a>
+  </section>
+
+  <main class="contenedor">
+
+    <section id="ofertas">
+      <h2 class="titulo">Nuestras ofertas especiales</h2>
+      <p class="subtitulo">
+        Combos deliciosos para consentirte un poquito. 🌷
+      </p>
+
+      <div class="promociones">
+
+        <article class="tarjeta">
+          <div class="tarjeta-superior">
+            <div class="emoji">☕🥐</div>
+            <span class="etiqueta">Combo favorito</span>
+            <h3>Desayuno Bloom</h3>
+          </div>
+
+          <div class="tarjeta-contenido">
+            <p>
+              Un latte de vainilla acompañado de un croissant
+              recién horneado.
+            </p>
+            <div class="precios">
+              <span class="precio-nuevo">$95 MXN</span>
+              <span class="precio-anterior">$110</span>
+            </div>
+            <button class="boton" onclick="elegirPromo('Desayuno Bloom')">
+              Elegir promoción
+            </button>
+          </div>
+        </article>
+
+        <article class="tarjeta">
+          <div class="tarjeta-superior">
+            <div class="emoji">🍓🧋</div>
+            <span class="etiqueta">Dulce y refrescante</span>
+            <h3>Berry Moment</h3>
+          </div>
+
+          <div class="tarjeta-contenido">
+            <p>
+              Un frappé de fresa y una galleta con chispas
+              de chocolate.
+            </p>
+            <div class="precios">
+              <span class="precio-nuevo">$85 MXN</span>
+              <span class="precio-anterior">$100</span>
+            </div>
+            <button class="boton" onclick="elegirPromo('Berry Moment')">
+              Elegir promoción
+            </button>
+          </div>
+        </article>
+
+        <article class="tarjeta">
+          <div class="tarjeta-superior">
+            <div class="emoji">🍵🍰</div>
+            <span class="etiqueta">Momento especial</span>
+            <h3>Matcha & Cake</h3>
+          </div>
+
+          <div class="tarjeta-contenido">
+            <p>
+              Un matcha latte acompañado de una rebanada
+              de pastel de fresa.
+            </p>
+            <div class="precios">
+              <span class="precio-nuevo">$115 MXN</span>
+              <span class="precio-anterior">$130</span>
+            </div>
+            <button class="boton" onclick="elegirPromo('Matcha & Cake')">
+              Elegir promoción
+            </button>
+          </div>
+        </article>
+
+        <article class="tarjeta">
+          <div class="tarjeta-superior">
+            <div class="emoji">🍫☕</div>
+            <span class="etiqueta">Para los chocolateros</span>
+            <h3>Choco Cozy</h3>
+          </div>
+
+          <div class="tarjeta-contenido">
+            <p>
+              Un frappé de moka y un brownie de chocolate
+              para una tarde acogedora.
+            </p>
+            <div class="precios">
+              <span class="precio-nuevo">$100 MXN</span>
+              <span class="precio-anterior">$115</span>
+            </div>
+            <button class="boton" onclick="elegirPromo('Choco Cozy')">
+              Elegir promoción
+            </button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="cupon">
+      <div style="font-size: 2.5rem;">💌</div>
+      <h2>Un detallito para ti</h2>
+      <p>
+        Copia nuestro código de ejemplo y úsalo como cupón
+        promocional en tu proyecto.
+      </p>
+
+      <div class="codigo" id="codigo-cupon">BLOOM10</div>
+      <br>
+
+      <button class="boton" onclick="copiarCupon()">
+        Copiar código 🌷
+      </button>
+
+      <p class="mensaje-cupon" id="mensaje-cupon" aria-live="polite"></p>
+
+      <p class="nota-cupon">
+        Código ilustrativo para esta demostración. No aplica descuentos reales.
+      </p>
+    </section>
+
+    <section class="beneficios">
+      <h2 class="titulo">¿Por qué elegir Brew & Bloom?</h2>
+      <p class="subtitulo">
+        Cada visita tiene un toque especial. ♡
+      </p>
+
+      <div class="beneficios-grid">
+
+        <article class="beneficio">
+          <span>🌱</span>
+          <h3>Ingredientes frescos</h3>
+          <p>Preparamos nuestras bebidas y postres con mucho cariño.</p>
+        </article>
+
+        <article class="beneficio">
+          <span>🎀</span>
+          <h3>Combos especiales</h3>
+          <p>Opciones deliciosas para acompañar cada momento.</p>
+        </article>
+
+        <article class="beneficio">
+          <span>☕</span>
+          <h3>Un espacio acogedor</h3>
+          <p>El lugar perfecto para relajarte y compartir.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <div class="aviso">
+      🌸 <strong>Nota:</strong> los precios y descuentos de esta página
+      son ejemplos para tu proyecto escolar. Las promociones no se aplican
+      automáticamente al carrito de pedidos.
+    </div>
+
+  </main>
+
+  <footer>
+    <p>🌷 <strong>Brew & Bloom</strong> — Un cafecito, un momento feliz.</p>
+    <p>Hecho con cariño y aroma a café ☕</p>
+    <p>© <span id="anio"></span> Brew & Bloom</p>
+  </footer>
+
+  <script>
+    document.getElementById("anio").textContent =
+      new Date().getFullYear();
+
+    function elegirPromo(nombre) {
+      alert(
+        "¡Elegiste la promoción " + nombre + "! 🌸\n\n" +
+        "Para continuar con tu pedido, visita nuestra página de pedidos."
+      );
+
+      window.location.href = "pedidos.html";
+    }
+
+    async function copiarCupon() {
+      const codigo = document.getElementById("codigo-cupon").textContent;
+      const mensaje = document.getElementById("mensaje-cupon");
+
+      try {
+        await navigator.clipboard.writeText(codigo);
+        mensaje.textContent = "¡Código copiado! Guárdalo para tu proyecto. 💗";
+      } catch (error) {
+        mensaje.textContent =
+          "Tu código es BLOOM10. Puedes copiarlo manualmente. 🌷";
+      }
+    }
+  </script>
+
+</body>
+</html>

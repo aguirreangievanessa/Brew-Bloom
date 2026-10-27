@@ -1,0 +1,437 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sobre Nosotros | Brew & Bloom</title>
+
+    <style>
+        :root {
+            --rosa: #e8bfc8;
+            --rosa-oscuro: #b76e7d;
+            --beige: #fff8ef;
+            --cafe: #51382f;
+            --blanco: #ffffff;
+            --verde: #e9eddf;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--beige);
+            color: var(--cafe);
+        }
+
+        /* ENCABEZADO */
+        header {
+            background: var(--blanco);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .logo {
+            color: var(--rosa-oscuro);
+            font-family: Georgia, serif;
+            font-size: 25px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--cafe);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        nav a:hover,
+        nav a.activo {
+            color: var(--rosa-oscuro);
+        }
+
+        /* PORTADA */
+        .portada {
+            text-align: center;
+            padding: 75px 20px;
+            background: linear-gradient(135deg, #f5dce2, #fff0d9);
+        }
+
+        .etiqueta {
+            color: var(--rosa-oscuro);
+            font-weight: bold;
+            letter-spacing: 3px;
+            font-size: 13px;
+        }
+
+        h1, h2, h3 {
+            font-family: Georgia, serif;
+        }
+
+        h1 {
+            font-size: clamp(38px, 5vw, 54px);
+            margin: 22px 0;
+        }
+
+        .portada p.descripcion {
+            max-width: 680px;
+            margin: auto;
+            line-height: 1.8;
+        }
+
+        /* HISTORIA */
+        .historia {
+            max-width: 1000px;
+            margin: auto;
+            padding: 65px 25px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .historia-texto h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .historia-texto p {
+            line-height: 1.9;
+            margin-bottom: 15px;
+        }
+
+        .ilustracion {
+            background: #f3e0d2;
+            border-radius: 25px;
+            padding: 45px 20px;
+            text-align: center;
+        }
+
+        .ilustracion .flores {
+            font-size: 85px;
+        }
+
+        .ilustracion h3 {
+            font-size: 25px;
+            margin: 15px 0;
+        }
+
+        /* MISIÓN, VISIÓN Y VALORES */
+        .seccion {
+            padding: 55px 7%;
+        }
+
+        .titulo-seccion {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 35px;
+        }
+
+        .contenedor {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit, minmax(220px, 1fr)
+            );
+            gap: 22px;
+        }
+
+        .tarjeta {
+            background: var(--blanco);
+            border: 1px solid #f0dfd4;
+            border-radius: 20px;
+            padding: 28px 22px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-6px);
+        }
+
+        .icono {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .tarjeta h3 {
+            font-size: 23px;
+            margin-bottom: 14px;
+        }
+
+        .tarjeta p {
+            line-height: 1.8;
+        }
+
+        /* NUESTROS VALORES */
+        .valores {
+            background: var(--verde);
+            padding: 55px 20px;
+            text-align: center;
+        }
+
+        .valores h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .valores p {
+            max-width: 700px;
+            line-height: 1.9;
+            margin: auto;
+        }
+
+        .lista-valores {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .valor {
+            background: white;
+            padding: 12px 20px;
+            border-radius: 30px;
+        }
+
+        /* INVITACIÓN */
+        .invitacion {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .invitacion h2 {
+            font-size: 32px;
+            margin-bottom: 18px;
+        }
+
+        .invitacion p {
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        button {
+            background: var(--rosa-oscuro);
+            color: white;
+            border: none;
+            padding: 13px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: var(--cafe);
+        }
+
+        /* PIE DE PÁGINA */
+        footer {
+            background: var(--cafe);
+            color: white;
+            text-align: center;
+            padding: 22px;
+        }
+
+        @media (max-width: 700px) {
+            header {
+                justify-content: center;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            .historia {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <header>
+        <a href="index.html" class="logo">
+            🌷 Brew & Bloom
+        </a>
+
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="menu.html">Menú</a>
+            <a href="especialidades.html">Especialidades</a>
+            <a href="nosotros.html" class="activo">Nosotros</a>
+            <a href="pedidos.html">Pedidos</a>
+            <a href="reservaciones.html">Reservaciones</a>
+            <a href="promociones.html">Promociones</a>
+            <a href="contacto.html">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- PORTADA -->
+    <section class="portada">
+        <p class="etiqueta">NUESTRA HISTORIA</p>
+
+        <h1>Un lugar para florecer 🌸</h1>
+
+        <p class="descripcion">
+            En Brew & Bloom creemos que una taza de café
+            puede convertir un momento sencillo en un recuerdo
+            especial. Creamos un espacio para disfrutar,
+            conversar y relajarse.
+        </p>
+    </section>
+
+    <!-- HISTORIA DE LA CAFETERÍA -->
+    <section class="historia">
+
+        <div class="historia-texto">
+            <h2>¿Quiénes somos? 🤎</h2>
+
+            <p>
+                Brew & Bloom es el concepto de una cafetería
+                acogedora que combina el amor por el café,
+                los postres y los pequeños detalles.
+            </p>
+
+            <p>
+                Nuestro estilo se inspira en los tonos pastel,
+                las flores y los espacios tranquilos donde cada
+                persona puede sentirse bienvenida.
+            </p>
+
+            <p>
+                Queremos que cada visita sea una oportunidad
+                para hacer una pausa, compartir con alguien
+                especial o simplemente disfrutar de algo rico.
+            </p>
+        </div>
+
+        <div class="ilustracion">
+            <div class="flores">🌷☕🌷</div>
+
+            <h3>Brew & Bloom</h3>
+
+            <p>
+                Café, postres y momentos bonitos.
+            </p>
+        </div>
+
+    </section>
+
+    <!-- MISIÓN, VISIÓN Y OBJETIVOS -->
+    <section class="seccion">
+        <h2 class="titulo-seccion">
+            Lo que nos inspira ✨
+        </h2>
+
+        <div class="contenedor">
+
+            <article class="tarjeta">
+                <div class="icono">🤎</div>
+
+                <h3>Nuestra misión</h3>
+
+                <p>
+                    Ofrecer bebidas y postres deliciosos
+                    en un ambiente cálido, creativo y
+                    agradable para nuestros clientes.
+                </p>
+            </article>
+
+            <article class="tarjeta">
+                <div class="icono">🌱</div>
+
+                <h3>Nuestra visión</h3>
+
+                <p>
+                    Ser una cafetería reconocida por su
+                    ambiente acogedor, su atención amable
+                    y sus productos especiales.
+                </p>
+            </article>
+
+            <article class="tarjeta">
+                <div class="icono">🌸</div>
+
+                <h3>Nuestro objetivo</h3>
+
+                <p>
+                    Crear experiencias agradables mediante
+                    el buen servicio, la creatividad y
+                    una propuesta de café y postres.
+                </p>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- VALORES -->
+    <section class="valores">
+        <h2>Nuestros valores ♡</h2>
+
+        <p>
+            Cada detalle representa lo que queremos transmitir:
+            un trato amable, creatividad en nuestros productos
+            y un espacio donde todos puedan disfrutar.
+        </p>
+
+        <div class="lista-valores">
+            <span class="valor">☕ Calidad</span>
+            <span class="valor">🤝 Amabilidad</span>
+            <span class="valor">🌷 Creatividad</span>
+            <span class="valor">💗 Calidez</span>
+            <span class="valor">🌿 Bienestar</span>
+        </div>
+    </section>
+
+    <!-- INVITACIÓN FINAL -->
+    <section class="invitacion">
+        <h2>¡Nos encantará recibirte! ☕</h2>
+
+        <p>
+            Descubre nuestros sabores y encuentra tu
+            nuevo rincón favorito.
+        </p>
+
+        <button onclick="irAlMenu()">
+            Explorar nuestro menú
+        </button>
+    </section>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+        <p>
+            © <span id="anio"></span> Brew & Bloom
+            | Hecho con ☕ y cariño
+        </p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        function irAlMenu() {
+            window.location.href = "menu.html";
+        }
+
+        document.getElementById("anio").textContent =
+            new Date().getFullYear();
+    </script>
+
+</body>
+</html>

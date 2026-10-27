@@ -1,0 +1,453 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Especialidades | Brew & Bloom</title>
+
+    <style>
+        :root {
+            --rosa: #e8bfc8;
+            --rosa-oscuro: #b76e7d;
+            --beige: #fff8ef;
+            --cafe: #51382f;
+            --blanco: #ffffff;
+            --verde: #a9b89a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--beige);
+            color: var(--cafe);
+        }
+
+        header {
+            background: white;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .logo {
+            color: var(--rosa-oscuro);
+            font-family: Georgia, serif;
+            font-size: 25px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--cafe);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        nav a:hover,
+        nav a.activo {
+            color: var(--rosa-oscuro);
+        }
+
+        .portada {
+            text-align: center;
+            padding: 75px 20px;
+            background: linear-gradient(135deg, #f5dce2, #fff0d9);
+        }
+
+        .etiqueta {
+            color: var(--rosa-oscuro);
+            letter-spacing: 3px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(36px, 5vw, 52px);
+            margin: 22px 0;
+        }
+
+        .portada p.descripcion {
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.8;
+        }
+
+        .seccion {
+            padding: 50px 7%;
+        }
+
+        h2 {
+            text-align: center;
+            font-family: Georgia, serif;
+            font-size: 31px;
+            margin-bottom: 30px;
+        }
+
+        .contenedor {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit, minmax(230px, 1fr)
+            );
+            gap: 25px;
+        }
+
+        .tarjeta {
+            background: white;
+            border-radius: 22px;
+            padding: 28px 22px;
+            text-align: center;
+            box-shadow: 0 5px 18px #51382f12;
+            transition: transform 0.3s;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-7px);
+        }
+
+        .icono {
+            font-size: 65px;
+            margin: 15px 0;
+        }
+
+        .insignia {
+            display: inline-block;
+            background: var(--rosa);
+            color: var(--cafe);
+            padding: 6px 13px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .tarjeta h3 {
+            margin: 12px 0;
+            font-family: Georgia, serif;
+            font-size: 22px;
+        }
+
+        .tarjeta p {
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+
+        .precio {
+            display: block;
+            color: var(--rosa-oscuro);
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+
+        button {
+            background: var(--rosa-oscuro);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: var(--cafe);
+        }
+
+        .detalle {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            background: #fff0f2;
+            border-radius: 12px;
+            font-size: 14px;
+        }
+
+        .experiencia {
+            margin: 20px 7% 50px;
+            padding: 40px 20px;
+            background: #e9eddf;
+            border-radius: 22px;
+            text-align: center;
+        }
+
+        .experiencia h2 {
+            margin-bottom: 15px;
+        }
+
+        .experiencia p {
+            max-width: 650px;
+            margin: 0 auto 20px;
+            line-height: 1.8;
+        }
+
+        footer {
+            background: var(--cafe);
+            color: white;
+            text-align: center;
+            padding: 22px;
+        }
+
+        @media (max-width: 700px) {
+            header {
+                justify-content: center;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            .seccion {
+                padding: 35px 6%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ENCABEZADO -->
+    <header>
+        <a href="index.html" class="logo">
+            🌷 Brew & Bloom
+        </a>
+
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="menu.html">Menú</a>
+            <a href="especialidades.html" class="activo">
+                Especialidades
+            </a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="pedidos.html">Pedidos</a>
+            <a href="reservaciones.html">Reservaciones</a>
+            <a href="promociones.html">Promociones</a>
+            <a href="contacto.html">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- PORTADA -->
+    <section class="portada">
+        <p class="etiqueta">CREACIONES DE LA CASA</p>
+
+        <h1>Nuestras especialidades ✨</h1>
+
+        <p class="descripcion">
+            Descubre bebidas únicas, sabores deliciosos
+            y pequeños detalles que hacen especial cada visita
+            a Brew & Bloom.
+        </p>
+    </section>
+
+    <!-- BEBIDAS ESPECIALES -->
+    <section class="seccion">
+        <h2>Favoritos de la casa ♡</h2>
+
+        <div class="contenedor">
+
+            <article class="tarjeta">
+                <span class="insignia">Más popular</span>
+
+                <div class="icono">🌸☕</div>
+
+                <h3>Bloom Latte</h3>
+
+                <p>
+                    Latte cremoso con un delicado toque de vainilla.
+                    Dulce, suave y reconfortante.
+                </p>
+
+                <span class="precio">$82 MXN</span>
+
+                <button onclick="verDetalle('detalle1')">
+                    Ver detalles
+                </button>
+
+                <div class="detalle" id="detalle1">
+                    Ideal para acompañar una tarde tranquila.
+                    Puede prepararse caliente o frío.
+                </div>
+            </article>
+
+            <article class="tarjeta">
+                <span class="insignia">Fresco y frutal</span>
+
+                <div class="icono">🍓🍵</div>
+
+                <h3>Berry Matcha</h3>
+
+                <p>
+                    Matcha combinado con fresa y leche,
+                    con una presentación llena de color.
+                </p>
+
+                <span class="precio">$88 MXN</span>
+
+                <button onclick="verDetalle('detalle2')">
+                    Ver detalles
+                </button>
+
+                <div class="detalle" id="detalle2">
+                    Una opción fresca con sabor frutal.
+                    Disponible con hielo.
+                </div>
+            </article>
+
+            <article class="tarjeta">
+                <span class="insignia">Especial de temporada</span>
+
+                <div class="icono">🍯🧊</div>
+
+                <h3>Honey Cloud Coffee</h3>
+
+                <p>
+                    Café frío con miel y una capa
+                    de espuma suave y cremosa.
+                </p>
+
+                <span class="precio">$85 MXN</span>
+
+                <button onclick="verDetalle('detalle3')">
+                    Ver detalles
+                </button>
+
+                <div class="detalle" id="detalle3">
+                    Combina notas dulces con el sabor
+                    intenso del café.
+                </div>
+            </article>
+
+            <article class="tarjeta">
+                <span class="insignia">Para los amantes del chocolate</span>
+
+                <div class="icono">🍫🤎</div>
+
+                <h3>Mocha Dream</h3>
+
+                <p>
+                    Espresso, chocolate y leche cremosa
+                    para una bebida llena de sabor.
+                </p>
+
+                <span class="precio">$79 MXN</span>
+
+                <button onclick="verDetalle('detalle4')">
+                    Ver detalles
+                </button>
+
+                <div class="detalle" id="detalle4">
+                    Perfecto para disfrutar con una galleta
+                    o una rebanada de pastel.
+                </div>
+            </article>
+
+            <article class="tarjeta">
+                <span class="insignia">Dulce favorito</span>
+
+                <div class="icono">🍰🌷</div>
+
+                <h3>Pink Velvet Cake</h3>
+
+                <p>
+                    Rebanada de pastel suave con crema
+                    y una presentación delicada.
+                </p>
+
+                <span class="precio">$72 MXN</span>
+
+                <button onclick="verDetalle('detalle5')">
+                    Ver detalles
+                </button>
+
+                <div class="detalle" id="detalle5">
+                    Una opción dulce para compartir
+                    o disfrutar con tu bebida favorita.
+                </div>
+            </article>
+
+            <article class="tarjeta">
+                <span class="insignia">Recién horneado</span>
+
+                <div class="icono">🥐✨</div>
+
+                <h3>Sweet Croissant</h3>
+
+                <p>
+                    Croissant doradito y hojaldrado,
+                    ideal para acompañar un café.
+                </p>
+
+                <span class="precio">$48 MXN</span>
+
+                <button onclick="verDetalle('detalle6')">
+                    Ver detalles
+                </button>
+
+                <div class="detalle" id="detalle6">
+                    Disfrútalo en el desayuno o durante
+                    tu pausa de la tarde.
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- EXPERIENCIA -->
+    <section class="experiencia">
+        <h2>Un momento solo para ti 🌿</h2>
+
+        <p>
+            En Brew & Bloom creemos que los pequeños momentos
+            también merecen celebrarse. Elige tu bebida favorita,
+            acompáñala con algo dulce y disfruta.
+        </p>
+
+        <button onclick="irAlMenu()">
+            Explorar menú completo
+        </button>
+    </section>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+        <p>
+            © <span id="anio"></span> Brew & Bloom
+            | Hecho con ☕ y cariño
+        </p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        function verDetalle(id) {
+            const detalle = document.getElementById(id);
+
+            if (detalle.style.display === "block") {
+                detalle.style.display = "none";
+            } else {
+                detalle.style.display = "block";
+            }
+        }
+
+        function irAlMenu() {
+            window.location.href = "menu.html";
+        }
+
+        document.getElementById("anio").textContent =
+            new Date().getFullYear();
+    </script>
+
+</body>
+</html>

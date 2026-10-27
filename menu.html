@@ -1,0 +1,457 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú | Brew & Bloom</title>
+
+    <style>
+        :root {
+            --rosa: #e8bfc8;
+            --rosa-oscuro: #b76e7d;
+            --beige: #fff8ef;
+            --cafe: #51382f;
+            --blanco: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--beige);
+            color: var(--cafe);
+        }
+
+        header {
+            background: white;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .logo {
+            color: var(--rosa-oscuro);
+            font-family: Georgia, serif;
+            font-size: 25px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--cafe);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        nav a:hover,
+        nav a.activo {
+            color: var(--rosa-oscuro);
+            text-decoration: underline;
+        }
+
+        .portada {
+            text-align: center;
+            padding: 65px 20px;
+            background: linear-gradient(135deg, #f5dce2, #fff0d9);
+        }
+
+        .portada p {
+            color: var(--rosa-oscuro);
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(38px, 5vw, 52px);
+            margin: 20px 0;
+        }
+
+        .portada .descripcion {
+            color: var(--cafe);
+            letter-spacing: normal;
+            font-weight: normal;
+            line-height: 1.7;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .seccion {
+            padding: 45px 7%;
+        }
+
+        h2 {
+            font-family: Georgia, serif;
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 30px;
+        }
+
+        .productos {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit, minmax(220px, 1fr)
+            );
+            gap: 24px;
+        }
+
+        .tarjeta {
+            background: white;
+            text-align: center;
+            padding: 25px 20px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px #51382f12;
+            transition: 0.3s;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-6px);
+        }
+
+        .icono {
+            font-size: 55px;
+            margin-bottom: 12px;
+        }
+
+        .tarjeta h3 {
+            margin-bottom: 10px;
+        }
+
+        .tarjeta p {
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .precio {
+            display: block;
+            color: var(--rosa-oscuro);
+            font-weight: bold;
+            margin: 12px 0;
+        }
+
+        button {
+            background: var(--rosa-oscuro);
+            color: white;
+            border: none;
+            padding: 11px 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: var(--cafe);
+        }
+
+        .carrito {
+            max-width: 700px;
+            margin: 0 auto 45px;
+            padding: 25px;
+            background: #f3e0d2;
+            border-radius: 18px;
+        }
+
+        .carrito h2 {
+            margin-bottom: 15px;
+        }
+
+        #lista-carrito p {
+            padding: 8px 0;
+            border-bottom: 1px solid #d8c1b1;
+        }
+
+        .total {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .vaciar {
+            background: var(--cafe);
+            margin-left: 8px;
+        }
+
+        footer {
+            background: var(--cafe);
+            color: white;
+            text-align: center;
+            padding: 22px;
+        }
+
+        @media (max-width: 700px) {
+            header {
+                justify-content: center;
+            }
+
+            nav {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVEGACIÓN -->
+    <header>
+        <a href="index.html" class="logo">
+            🌷 Brew & Bloom
+        </a>
+
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="menu.html" class="activo">Menú</a>
+            <a href="especialidades.html">Especialidades</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="pedidos.html">Pedidos</a>
+            <a href="reservaciones.html">Reservaciones</a>
+            <a href="promociones.html">Promociones</a>
+            <a href="contacto.html">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- PORTADA DEL MENÚ -->
+    <section class="portada">
+        <p>NUESTROS SABORES FAVORITOS</p>
+        <h1>El menú de Brew & Bloom ☕</h1>
+
+        <div class="descripcion">
+            Desde un café calientito hasta un postre delicioso,
+            encuentra algo especial para acompañar tu día.
+        </div>
+    </section>
+
+    <!-- BEBIDAS CALIENTES -->
+    <section class="seccion">
+        <h2>☕ Bebidas calientes</h2>
+
+        <div class="productos">
+
+            <article class="tarjeta">
+                <div class="icono">☕</div>
+                <h3>Latte clásico</h3>
+                <p>Espresso con leche cremosa.</p>
+                <span class="precio">$65 MXN</span>
+                <button onclick="agregar('Latte clásico', 65)">
+                    Agregar al carrito
+                </button>
+            </article>
+
+            <article class="tarjeta">
+                <div class="icono">🍫</div>
+                <h3>Chocolate caliente</h3>
+                <p>Chocolate dulce y reconfortante.</p>
+                <span class="precio">$58 MXN</span>
+                <button onclick="agregar('Chocolate caliente', 58)">
+                    Agregar al carrito
+                </button>
+            </article>
+
+            <article class="tarjeta">
+                <div class="icono">☕</div>
+                <h3>Cappuccino</h3>
+                <p>Café espresso con espuma de leche.</p>
+                <span class="precio">$62 MXN</span>
+                <button onclick="agregar('Cappuccino', 62)">
+                    Agregar al carrito
+                </button>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- BEBIDAS FRÍAS -->
+    <section class="seccion">
+        <h2>🧊 Bebidas frías</h2>
+
+        <div class="productos">
+
+            <article class="tarjeta">
+                <div class="icono">🧋</div>
+                <h3>Iced caramel latte</h3>
+                <p>Café frío con leche y caramelo.</p>
+                <span class="precio">$75 MXN</span>
+                <button onclick="agregar('Iced caramel latte', 75)">
+                    Agregar al carrito
+                </button>
+            </article>
+
+            <article class="tarjeta">
+                <div class="icono">🍓</div>
+                <h3>Strawberry Matcha</h3>
+                <p>Matcha con fresa y leche.</p>
+                <span class="precio">$88 MXN</span>
+                <button onclick="agregar('Strawberry Matcha', 88)">
+                    Agregar al carrito
+                </button>
+            </article>
+
+            <article class="tarjeta">
+                <div class="icono">🥤</div>
+                <h3>Frappé de vainilla</h3>
+                <p>Bebida fría cremosa con vainilla.</p>
+                <span class="precio">$78 MXN</span>
+                <button onclick="agregar('Frappé de vainilla', 78)">
+                    Agregar al carrito
+                </button>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- POSTRES -->
+    <section class="seccion">
+        <h2>🍰 Postres y panadería</h2>
+
+        <div class="productos">
+
+            <article class="tarjeta">
+                <div class="icono">🍰</div>
+                <h3>Pastel de vainilla</h3>
+                <p>Pastel suave con crema dulce.</p>
+                <span class="precio">$68 MXN</span>
+                <button onclick="agregar('Pastel de vainilla', 68)">
+                    Agregar al carrito
+                </button>
+            </article>
+
+            <article class="tarjeta">
+                <div class="icono">🍪</div>
+                <h3>Galleta choco-chip</h3>
+                <p>Galleta con chispas de chocolate.</p>
+                <span class="precio">$35 MXN</span>
+                <button onclick="agregar('Galleta choco-chip', 35)">
+                    Agregar al carrito
+                </button>
+            </article>
+
+            <article class="tarjeta">
+                <div class="icono">🥐</div>
+                <h3>Croissant</h3>
+                <p>Pan hojaldrado y doradito.</p>
+                <span class="precio">$48 MXN</span>
+                <button onclick="agregar('Croissant', 48)">
+                    Agregar al carrito
+                </button>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- CARRITO INTERACTIVO -->
+    <section class="carrito">
+        <h2>🛍️ Tu carrito</h2>
+
+        <div id="lista-carrito">
+            <p>Tu carrito está vacío.</p>
+        </div>
+
+        <p class="total">
+            Total: $<span id="total">0</span> MXN
+        </p>
+
+        <button onclick="finalizarPedido()">
+            Continuar pedido
+        </button>
+
+        <button class="vaciar" onclick="vaciarCarrito()">
+            Vaciar carrito
+        </button>
+    </section>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+        <p>
+            © <span id="anio"></span> Brew & Bloom
+            | Hecho con ☕ y cariño
+        </p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        let carrito = [];
+
+        function agregar(nombre, precio) {
+            carrito.push({
+                nombre: nombre,
+                precio: precio
+            });
+
+            actualizarCarrito();
+        }
+
+        function actualizarCarrito() {
+            const lista = document.getElementById("lista-carrito");
+            const totalTexto = document.getElementById("total");
+
+            lista.innerHTML = "";
+
+            if (carrito.length === 0) {
+                lista.textContent = "Tu carrito está vacío.";
+            }
+
+            let total = 0;
+
+            carrito.forEach((producto, indice) => {
+                total += producto.precio;
+
+                const elemento = document.createElement("p");
+                elemento.textContent =
+                    producto.nombre + " - $" +
+                    producto.precio + " MXN ";
+
+                const eliminar = document.createElement("button");
+                eliminar.textContent = "Quitar";
+                eliminar.style.marginLeft = "10px";
+
+                eliminar.onclick = function () {
+                    carrito.splice(indice, 1);
+                    actualizarCarrito();
+                };
+
+                elemento.appendChild(eliminar);
+                lista.appendChild(elemento);
+            });
+
+            totalTexto.textContent = total;
+        }
+
+        function vaciarCarrito() {
+            carrito = [];
+            actualizarCarrito();
+        }
+
+        function finalizarPedido() {
+            if (carrito.length === 0) {
+                alert("Primero agrega algún producto al carrito ☕");
+                return;
+            }
+
+            alert(
+                "¡Gracias por elegir Brew & Bloom! 🌷\n" +
+                "Tu total es de $" +
+                document.getElementById("total").textContent +
+                " MXN.\n\nEste es un ejemplo escolar; no se ha enviado ningún pedido."
+            );
+        }
+
+        document.getElementById("anio").textContent =
+            new Date().getFullYear();
+    </script>
+
+</body>
+</html>
